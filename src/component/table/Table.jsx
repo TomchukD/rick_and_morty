@@ -2,7 +2,7 @@ import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from
 import Controls from "../cell/controlls";
 
 function RM_table() {
-    const data = [1,3]
+    const data = [1, 3]
     return (
         <TableContainer>
             <Table>
@@ -15,8 +15,8 @@ function RM_table() {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    { data.map((row) => (
-                        <TableRow>
+                    { data.map((row, index) => (
+                        <TableRow key={ index }>
                             <TableCell align="left">{ row.name }</TableCell>
                             <TableCell align="left">{ row.state }</TableCell>
                             <TableCell align="left">{ row.type }</TableCell>

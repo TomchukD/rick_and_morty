@@ -9,7 +9,7 @@ function Controls({charter}) {
     const navigate = useNavigate();
 
     const handleOpenDetails = () => {
-        navigate(`/details${ charter }`);
+        navigate(`/detail/${ charter }`);
     }
     return (
         <Stack direction='row' spacing={ 1 }>
