@@ -1,10 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
-import charterSlice from './charterSlice';
+import charterSlice from 'src/redux/chartersSlice';
 
 const store = configureStore({
-    reducer:{
+    reducer: {
         charters: charterSlice
     }
-})
+});
 
 export default store;

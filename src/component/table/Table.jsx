@@ -1,11 +1,15 @@
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
+import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
 import Controls from "../cell/controlls";
 
 function RM_table() {
     const data = [1, 3]
     return (
-        <TableContainer>
-            <Table>
+        <TableContainer component={ Paper }>
+            <Table sx={ {
+                width: {xs: '100%', md: '80%'},
+                margin: 'auto',
+                mt: 4
+            } }>
                 <TableHead>
                     <TableRow>
                         <TableCell align="left">Name</TableCell>
