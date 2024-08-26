@@ -4,14 +4,14 @@ import Main from './page/main';
 import Detailed from './page/detailed';
 
 function App() {
-  return (
-      <BrowserRouter>
-        <Routes>
-          <Route index element={<Main />} />
-          <Route path="detail:/slug" element={<Detailed />} />
-        </Routes>
-      </BrowserRouter>
-  );
+    return (
+        <BrowserRouter>
+            <Routes>
+                <Route index element={ <Main/> }/>
+                <Route path="detail:/charter" element={ <Detailed/> }/>
+            </Routes>
+        </BrowserRouter>
+    );
 }
 
 export default App;

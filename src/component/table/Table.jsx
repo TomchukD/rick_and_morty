@@ -1,24 +1,28 @@
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
+import Controls from "../cell/controlls";
 
 function RM_table() {
+    const data = [1,3]
     return (
         <TableContainer>
             <Table>
                 <TableHead>
                     <TableRow>
                         <TableCell align="left">Name</TableCell>
-                        <TableCell >Name</TableCell>
-                        <TableCell >Name</TableCell>
-                        <TableCell >Name</TableCell>
+                        <TableCell>State</TableCell>
+                        <TableCell>Type</TableCell>
+                        <TableCell></TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    <TableRow>
-                        <TableCell align="left">123</TableCell>
-                        <TableCell align="left">1234</TableCell>
-                        <TableCell align="left">1236</TableCell>
-                        <TableCell align="left">1235</TableCell>
-                    </TableRow>
+                    { data.map((row) => (
+                        <TableRow>
+                            <TableCell align="left">{ row.name }</TableCell>
+                            <TableCell align="left">{ row.state }</TableCell>
+                            <TableCell align="left">{ row.type }</TableCell>
+                            <TableCell align="left"><Controls/></TableCell>
+                        </TableRow>
+                    )) }
                 </TableBody>
             </Table>
         </TableContainer>
