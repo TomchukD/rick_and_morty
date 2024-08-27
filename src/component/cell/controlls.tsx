@@ -7,7 +7,7 @@ import { Character } from 'src/interface/interface';
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { deleteCharacter } from 'src/redux/charactersSlice';
-import EditModal from 'src/component/modal/editModal';
+import CharacterModal from 'src/component/modal/characterModal';
 
 interface ControlsProps {
     character: Character;
@@ -40,7 +40,7 @@ const Controls: React.FC<ControlsProps> = ({ character }) => {
             <ButtonGroup>
                 <Button onClick={ handleOpenDetails }><InfoIcon/></Button>
             </ButtonGroup>
-            <EditModal open={ isOpen } handleClose={ handleClose } characterData={ character }/>
+            <CharacterModal open={ isOpen } handleClose={ handleClose } characterData={ character }/>
         </Stack>
     );
 };

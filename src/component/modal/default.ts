@@ -1,4 +1,6 @@
-export const defaultCharacter = {
+import { Character } from 'src/interface/interface';
+
+export const defaultCharacter: Character = {
     id: 0,
     name: '',
     status: 'unknown',

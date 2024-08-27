@@ -2,45 +2,43 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
-import { useState } from "react";
-import { defaultCharacter } from "./default";
-import { useDispatch } from "react-redux";
-import { addCharacter } from "../../redux/charactersSlice";
-import { Button, Grid, MenuItem, TextField } from "@mui/material";
+import { useState } from 'react';
+import { defaultCharacter } from './default';
+import { useDispatch } from 'react-redux';
+import { addCharacter } from '../../redux/charactersSlice';
+import { Button, Grid, MenuItem, TextField } from '@mui/material';
+import styles from '../modal/modal.module.css';
+import { Character } from 'src/interface/interface';
 
-const style = {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    width: 400,
-    bgcolor: 'background.paper',
-    border: '2px solid #000',
-    boxShadow: 24,
-    p: 4,
-};
+interface ScrollableModalProps {
+    open: boolean;
+    handleClose: () => void;
+    characterData?: Character;
+}
 
-export default function EditModal({open, handleClose, characterData}) {
+const CharacterModal: React.FC<ScrollableModalProps> = ({ open, handleClose, characterData }) => {
     const [character, setCharacter] = useState(characterData || defaultCharacter);
     const dispatch = useDispatch();
-    const handleChange = (event) => {
-        const {name, value} = event.target;
-        setCharacter({...character, [name]: value});
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        const { name, value } = event.target;
+        setCharacter({ ...character, [name]: value });
     };
 
-    const handleSubmit = (event) => {
+    const handleSubmit = (event: React.FormEvent) => {
         event.preventDefault();
-        dispatch(addCharacter(character))
+        dispatch(addCharacter(character as Character));
+        handleClose();
     };
     return (
         <div>
             <Modal
                 open={ open }
                 onClose={ handleClose }
+                disableScrollLock={ false }
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"
             >
-                <Box sx={ style }>
+                <Box className={ styles.modal }>
                     <Typography id="modal-modal-title" variant="h6" component="h2">
                         Text in a modal
                     </Typography>
@@ -107,7 +105,7 @@ export default function EditModal({open, handleClose, characterData}) {
                                 <TextField
                                     label="Location Name"
                                     name="location.name"
-                                    value={ character.location.name }
+                                    value={ character.location?.name }
                                     onChange={ handleChange }
                                     fullWidth
                                 />
@@ -116,7 +114,7 @@ export default function EditModal({open, handleClose, characterData}) {
                                 <TextField
                                     label="Location URL"
                                     name="location.url"
-                                    value={ character.location.url }
+                                    value={ character.location?.url }
                                     onChange={ handleChange }
                                     fullWidth
                                 />
@@ -125,7 +123,7 @@ export default function EditModal({open, handleClose, characterData}) {
                                 <TextField
                                     label="Original Name"
                                     name="original.name"
-                                    value={ character.original.name }
+                                    value={ character.original?.name }
                                     onChange={ handleChange }
                                     fullWidth
                                 />
@@ -134,7 +132,7 @@ export default function EditModal({open, handleClose, characterData}) {
                                 <TextField
                                     label="Original URL"
                                     name="original.url"
-                                    value={ character.original.url }
+                                    value={ character.original?.url }
                                     onChange={ handleChange }
                                     fullWidth
                                 />
@@ -153,7 +151,10 @@ export default function EditModal({open, handleClose, characterData}) {
                                     label="Episode URLs (comma separated)"
                                     name="episode"
                                     value={ character.episode.join(',') }
-                                    onChange={ (e) => setCharacter({...character, episode: e.target.value.split(',')}) }
+                                    onChange={ (e) => setCharacter({
+                                        ...character,
+                                        episode: e.target.value ? e.target.value.split(',') : []
+                                    }) }
                                     fullWidth
                                 />
                             </Grid>
@@ -177,4 +178,6 @@ export default function EditModal({open, handleClose, characterData}) {
             </Modal>
         </div>
     );
-}
+};
+
+export default CharacterModal;
