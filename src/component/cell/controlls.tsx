@@ -5,23 +5,31 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { useNavigate } from 'react-router-dom';
 import { Character } from 'src/interface/interface';
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import { deleteCharacter } from 'src/redux/charactersSlice';
 
 interface ControlsProps {
     character: Character;
 }
 
 const Controls: React.FC<ControlsProps> = ({ character }) => {
-
+    const dispatch = useDispatch();
     const navigate = useNavigate();
 
     const handleOpenDetails = () => {
         navigate(`/detail/${ character.id }`);
     };
+    const handleEdit = () => {
+    };
+    const handleDelete = () => {
+        dispatch(deleteCharacter(character.id));
+    };
+
     return (
         <Stack direction="row" spacing={ 1 }>
             <ButtonGroup>
-                <Button><EditIcon/></Button>
-                <Button><DeleteIcon/></Button>
+                <Button onClick={ handleEdit }><EditIcon/></Button>
+                <Button onClick={ handleDelete }><DeleteIcon/></Button>
             </ButtonGroup>
             <ButtonGroup>
                 <Button onClick={ handleOpenDetails }><InfoIcon/></Button>

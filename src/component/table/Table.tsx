@@ -11,8 +11,10 @@ function RM_table() {
     let charterList: Character[] = useSelector(selectCharters);
     const dispatch = useDispatch<any>();
     useEffect(() => {
-        dispatch(fetchCharacter(BASE_API));
-    }, [dispatch]);
+        if (!charterList.length) {
+            dispatch(fetchCharacter(BASE_API));
+        }
+    }, [charterList.length, dispatch]);
 
 
     if (!charterList.length) {

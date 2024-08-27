@@ -31,6 +31,12 @@ const charactersSlice = createSlice({
     reducers: {
         addCharacter: (state, action: PayloadAction<Character>) => {
             state.character.unshift(action.payload);
+        },
+        deleteCharacter: (state, action: PayloadAction<number>) => {
+            return {
+                ...state,
+                character: state.character.filter(character => character.id !== action.payload)
+            };
         }
     },
     extraReducers: (builder) => {
@@ -50,5 +56,5 @@ const charactersSlice = createSlice({
 });
 
 export const selectCharters = (state: RootState) => state.characters.character;
-export const { addCharacter } = charactersSlice.actions;
+export const { addCharacter, deleteCharacter } = charactersSlice.actions;
 export default charactersSlice.reducer;
