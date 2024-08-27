@@ -1,4 +1,12 @@
-import { Card, CardContent, CardMedia, Typography, List, ListItem, ListItemText } from '@mui/material';
+import {
+    Card,
+    CardContent,
+    CardMedia,
+    Typography,
+    List,
+    ListItem,
+    ListItemText
+} from '@mui/material';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { RootState } from 'src/redux/store';
@@ -6,7 +14,6 @@ import { RootState } from 'src/redux/store';
 function Detailed() {
     const { characterId } = useParams<{ characterId: string }>();
     const character = useSelector((state: RootState) => state.characters.character.find(item => item.id.toString() === characterId));
-
     if (!character) {
         return <div>Character not found</div>;
     }
@@ -41,18 +48,32 @@ function Detailed() {
                     Gender: { character.gender }
                 </Typography>
                 <Typography color="text.secondary">
-                    Location: <a href={ character.location.url }>{ character.location.name }</a>
+                    Location:
+                    {
+                        character.location.url ?
+                            <a href={ character.location.url }>{ character.location.name }</a> :
+                            character.location.name || '-'
+                    }
+
                 </Typography>
                 <Typography color="text.secondary">
-                    Original Location: <a href={ character.original.url }>{ character.original.name }</a>
+                    Original Location:
+                    {
+                        character.original?.url ?
+                            <a href={ character.original?.url }>{ character.original?.name }</a> :
+                            character.original?.name || '-'
+                    }
                 </Typography>
-                <List>
-                    { character.episodeList.map((episode: any, index: any) => (
-                        <ListItem key={ index }>
-                            <ListItemText primary={ episode }/>
-                        </ListItem>
-                    )) }
-                </List>
+                <Typography color="text.secondary">
+                    Episode:
+                    <List>
+                        { character.episode.map((episode: any, index: any) => (
+                            <ListItem component="a" target="_blank" href={ episode } key={ index }>
+                                <ListItemText primary={ episode }/>
+                            </ListItem>
+                        )) }
+                    </List>
+                </Typography>
             </CardContent>
         </Card>
     );

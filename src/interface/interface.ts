@@ -8,7 +8,7 @@ export interface Character {
     location: Location,
     original: Location,
     image: string | undefined
-    episodeList: string[];
+    episode: string[];
     url: string;
 }
 
