@@ -3,7 +3,8 @@ import charactersSlice from 'src/redux/charactersSlice';
 
 const store = configureStore({
     reducer: {
-        characters: charactersSlice
+        characters: charactersSlice,
+        detailed: charactersSlice
     }
 });
 export type RootState = ReturnType<typeof store.getState>;

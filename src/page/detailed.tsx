@@ -8,12 +8,23 @@ import {
     ListItemText
 } from '@mui/material';
 import { useParams } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'src/redux/store';
+import { useEffect } from 'react';
+import { fetchCharacterById } from 'src/redux/detailedSlice';
+import { BASE_API } from 'src/API/API';
 
 function Detailed() {
     const { characterId } = useParams<{ characterId: string }>();
+    const dispatch = useDispatch<any>();
     const character = useSelector((state: RootState) => state.characters.character.find(item => item.id.toString() === characterId));
+
+    useEffect(() => {
+        if (!character && characterId) {
+            dispatch(fetchCharacterById(`${ BASE_API }/${ characterId }`));
+        }
+    }, [character, characterId, dispatch]);
+
     if (!character) {
         return <div>Character not found</div>;
     }

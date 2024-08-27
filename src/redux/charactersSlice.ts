@@ -28,7 +28,11 @@ export const fetchCharacter = createAsyncThunk<Character[], string>(
 const charactersSlice = createSlice({
     name: 'charter',
     initialState: initialCharacter,
-    reducers: {},
+    reducers: {
+        addCharacter: (state, action: PayloadAction<Character>) => {
+            state.character.unshift(action.payload);
+        }
+    },
     extraReducers: (builder) => {
         builder
             .addCase(fetchCharacter.fulfilled, (state, action: PayloadAction<Character[]>) => {
@@ -46,4 +50,5 @@ const charactersSlice = createSlice({
 });
 
 export const selectCharters = (state: RootState) => state.characters.character;
+export const { addCharacter } = charactersSlice.actions;
 export default charactersSlice.reducer;
