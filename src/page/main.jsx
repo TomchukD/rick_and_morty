@@ -1,9 +1,12 @@
-import RMContainer from "../component/container/rm_container";
-import React from "react";
+import RMBar from "src/component/bar/bar";
+import RMContainer from "src/component/container/rm_container";
 
 function Main() {
     return (
-        <RMContainer></RMContainer>
+        <>
+            <RMBar />
+            <RMContainer></RMContainer>
+        </>
     );
 }
 

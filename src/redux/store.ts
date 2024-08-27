@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
-import charterSlice from 'src/redux/chartersSlice';
+import charactersSlice from 'src/redux/charactersSlice';
+import characterFullSlice from 'src/redux/detailSlice';
 
 const store = configureStore({
     reducer: {
-        charters: charterSlice
+        characters: charactersSlice,
+        characterFull: characterFullSlice
     }
 });
 
