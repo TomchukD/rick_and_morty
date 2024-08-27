@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Character, CharacterState } from 'src/interface/interface';
+import { RootState } from 'src/redux/store';
 
 
 const initialCharacter: CharacterState = {
@@ -44,5 +45,5 @@ const charactersSlice = createSlice({
     }
 });
 
-export const selectCharter = (state: { characters: { character: any; }; }) => state.characters.character;
+export const selectCharters = (state: RootState) => state.characters.character;
 export default charactersSlice.reducer;

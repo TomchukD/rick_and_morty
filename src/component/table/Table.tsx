@@ -1,6 +1,6 @@
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
 import Controls from '../cell/controlls';
-import { fetchCharacter, selectCharter } from 'src/redux/charactersSlice';
+import { fetchCharacter, selectCharters } from 'src/redux/charactersSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { Character } from 'src/interface/interface';
 import { useEffect } from 'react';
@@ -8,11 +8,11 @@ import { BASE_API } from 'src/API/API';
 
 
 function RM_table() {
-    let charterList: Character[] = useSelector(selectCharter);
+    let charterList: Character[] = useSelector(selectCharters);
     const dispatch = useDispatch<any>();
     useEffect(() => {
         dispatch(fetchCharacter(BASE_API));
-    }, []);
+    }, [dispatch]);
 
 
     if (!charterList.length) {
