@@ -31,7 +31,7 @@ const charactersSlice = createSlice({
     extraReducers: (builder) => {
         builder
             .addCase(fetchCharacter.fulfilled, (state, action: PayloadAction<Character[]>) => {
-                state.сharacter = action.payload;
+                state.character = action.payload;
                 state.status = 'succeeded';
             })
             .addCase(fetchCharacter.pending, (state) => {
@@ -44,6 +44,5 @@ const charactersSlice = createSlice({
     }
 });
 
-export const { updateCharter } = charactersSlice.actions;
 export const selectCharter = (state: { characters: { character: any; }; }) => state.characters.character;
 export default charactersSlice.reducer;
