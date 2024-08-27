@@ -35,7 +35,7 @@ function RM_table() {
                 </TableHead>
                 <TableBody>
                     {
-                        charterList.map((row: Character, index) => (
+                        charterList.map((row, index) => (
                             <TableRow key={ index }>
                                 <TableCell align="left">{ row.name }</TableCell>
                                 <TableCell align="left">{ row.species }</TableCell>

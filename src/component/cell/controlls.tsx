@@ -4,14 +4,18 @@ import InfoIcon from '@mui/icons-material/Info';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useNavigate } from 'react-router-dom';
 import { Character } from 'src/interface/interface';
+import React from 'react';
 
+interface ControlsProps {
+    character: Character;
+}
 
-function Controls(Сharacter) {
+const Controls: React.FC<ControlsProps> = ({ character }) => {
 
     const navigate = useNavigate();
 
     const handleOpenDetails = () => {
-        navigate(`/detail/${ Сharacter.id }`);
+        navigate(`/detail/${ character.id }`);
     };
     return (
         <Stack direction="row" spacing={ 1 }>
@@ -24,6 +28,6 @@ function Controls(Сharacter) {
             </ButtonGroup>
         </Stack>
     );
-}
+};
 
 export default Controls;
