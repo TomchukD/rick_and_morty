@@ -42,7 +42,11 @@ const Controls: React.FC<ControlsProps> = ({ character }) => {
             <ButtonGroup>
                 <Button onClick={ handleOpenDetails }><InfoIcon/></Button>
             </ButtonGroup>
-            <CharacterModal open={ isOpen } handleClose={ handleClose } characterData={ character }/>
+            {
+                isOpen && (
+                    <CharacterModal open={ isOpen } handleClose={ handleClose } characterData={ character }/>
+                )
+            }
         </Stack>
     );
 };

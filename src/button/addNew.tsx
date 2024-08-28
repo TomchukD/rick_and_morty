@@ -16,11 +16,15 @@ function RMAddNew() {
     };
 
     return (
-        <Stack direction="row" spacing={1}>
-            <Button variant="contained" onClick={handleOpen} color="primary" startIcon={<AddIcon />}>
+        <Stack direction="row" spacing={ 1 }>
+            <Button variant="contained" onClick={ handleOpen } color="primary" startIcon={ <AddIcon/> }>
                 Add new
             </Button>
-            <CharacterModal open={isOpenChar} handleClose={handleClose} />
+            {
+                isOpenChar && (
+                    <CharacterModal open={ isOpenChar } handleClose={ handleClose }/>
+                )
+            }
         </Stack>
     );
 }
