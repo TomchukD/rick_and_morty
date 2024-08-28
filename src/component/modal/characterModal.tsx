@@ -18,6 +18,7 @@ interface ScrollableModalProps {
 
 const CharacterModal: React.FC<ScrollableModalProps> = ({ open, handleClose, characterData }) => {
     const [character, setCharacter] = useState(characterData || defaultCharacter);
+    const isEdit = !!characterData;
     const dispatch = useDispatch();
     const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = event.target;
@@ -26,7 +27,9 @@ const CharacterModal: React.FC<ScrollableModalProps> = ({ open, handleClose, cha
 
     const handleSubmit = (event: React.FormEvent) => {
         event.preventDefault();
+        character.id = character.id || Math.floor(Math.random() * 1000000);
         dispatch(addCharacter(character as Character));
+        setCharacter(defaultCharacter);
         handleClose();
     };
     return (
@@ -40,7 +43,9 @@ const CharacterModal: React.FC<ScrollableModalProps> = ({ open, handleClose, cha
             >
                 <Box className={ styles.modal }>
                     <Typography id="modal-modal-title" variant="h6" component="h2">
-                        Text in a modal
+                        {
+                            isEdit ? 'Edit Character' : 'Add new Character'
+                        }
                     </Typography>
                     <form onSubmit={ handleSubmit }>
                         <Grid container spacing={ 2 }>

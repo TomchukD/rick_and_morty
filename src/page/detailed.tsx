@@ -17,7 +17,7 @@ import { BASE_API } from 'src/API/API';
 function Detailed() {
     const { characterId } = useParams<{ characterId: string }>();
     const dispatch = useDispatch<any>();
-    const character = useSelector((state: RootState) => state.characters.character.find(item => item.id.toString() === characterId));
+    const character = useSelector((state: RootState) => state.characters.character.find(item => item.id!.toString() === characterId));
 
     useEffect(() => {
         if (!character && characterId) {

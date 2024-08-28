@@ -1,7 +1,7 @@
 import { Character } from 'src/interface/interface';
 
 export const defaultCharacter: Character = {
-    id: 0,
+    id: null,
     name: '',
     status: 'unknown',
     species: '',

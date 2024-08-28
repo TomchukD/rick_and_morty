@@ -30,6 +30,11 @@ const charactersSlice = createSlice({
     initialState: initialCharacter,
     reducers: {
         addCharacter: (state, action: PayloadAction<Character>) => {
+            const characterIndex = state.character.findIndex(i => i.id === action.payload.id);
+            if (characterIndex !== -1) {
+                state.character[characterIndex] = action.payload;
+                return;
+            }
             state.character.unshift(action.payload);
         },
         deleteCharacter: (state, action: PayloadAction<number>) => {

@@ -1,5 +1,5 @@
 export interface Character {
-    id: number;
+    id: number | null;
     name: string;
     status: 'Alive' | 'Dead' | 'unknown';
     species: string;

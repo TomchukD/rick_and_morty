@@ -28,7 +28,7 @@ const Controls: React.FC<ControlsProps> = ({ character }) => {
         setIsOpen(false);
     };
     const handleDelete = () => {
-        dispatch(deleteCharacter(character.id));
+        dispatch(deleteCharacter(character.id!));
     };
 
     return (
