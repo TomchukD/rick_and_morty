@@ -193,13 +193,14 @@ const RMCharacterModal: React.FC<ModalProps> = ({ open, handleClose, characterDa
                             justifyContent: 'flex-end',
                             gap: 1
                         } }>
+                            
+                            <Button type="button" onClick={ handleClose } variant="contained" color="inherit">
+                                Close
+                            </Button>
                             <Button type="submit" variant="contained" color="primary">
                                 {
                                     isEdit ? 'Update' : 'Save'
                                 }
-                            </Button>
-                            <Button type="button" onClick={ handleClose } variant="contained" color="inherit">
-                                Close
                             </Button>
                         </Grid>
                     </Grid>

@@ -17,6 +17,7 @@ import { RootState } from 'src/redux/store';
 import { useEffect, useState } from 'react';
 import { fetchCharacterById } from 'src/redux/detailedSlice';
 import { BASE_API } from 'src/API/API';
+import { getMaxListeners } from 'process';
 
 const RMDetailed = () => {
     const { characterId } = useParams<{ characterId: string }>();
@@ -84,7 +85,7 @@ const RMDetailed = () => {
                                         disabled={ !!character.episode.length }
                                         onClick={ handleToggleEpisodes }>
                                         {
-                                            character.episode.length ? openEpisodes ? '-' : '+' : '-'
+                                            openEpisodes ? '-' : '+'
                                         }
                                     </IconButton>
                                 </Typography>

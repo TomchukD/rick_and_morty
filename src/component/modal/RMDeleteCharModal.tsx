@@ -16,8 +16,8 @@ interface ModalProps {
 const RMDeleteCharModal: React.FC<ModalProps> = ({ open, onClose, onDelete }) => {
     return (
         <Dialog
-            open={ open }
-            onClose={ onClose }
+            open={open}
+            onClose={onClose}
             aria-labelledby="alert-dialog-title"
             aria-describedby="alert-dialog-description"
         >
@@ -30,8 +30,8 @@ const RMDeleteCharModal: React.FC<ModalProps> = ({ open, onClose, onDelete }) =>
                 </DialogContentText>
             </DialogContent>
             <DialogActions>
-                <Button onClick={ onClose }>Close</Button>
-                <Button onClick={ onDelete } color="error">
+                <Button variant="contained" color='inherit' onClick={onClose}>Close</Button>
+                <Button variant="contained" onClick={onDelete} color="error">
                     Delete
                 </Button>
             </DialogActions>
