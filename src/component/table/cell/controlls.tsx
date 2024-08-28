@@ -32,7 +32,9 @@ const Controls: React.FC<ControlsProps> = ({ character }) => {
     };
 
     return (
-        <Stack direction="row" spacing={ 1 }>
+        <Stack direction="row" spacing={ 1 } sx={ {
+            justifyContent: 'flex-end'
+        } }>
             <ButtonGroup>
                 <Button onClick={ handleOpen }><EditIcon/></Button>
                 <Button onClick={ handleDelete }><DeleteIcon/></Button>
