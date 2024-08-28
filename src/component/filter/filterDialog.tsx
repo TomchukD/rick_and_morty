@@ -1,30 +1,30 @@
-import React, { useState } from 'react';
-import {
-    Button,
-    TextField,
-    Radio,
-    RadioGroup,
-    FormControlLabel,
-    FormControl,
-    FormLabel,
-    Menu,
-    MenuItem,
-    Box,
-    IconButton
-} from '@mui/material';
-import FilterListIcon from '@mui/icons-material/FilterList';
-import ClearIcon from '@mui/icons-material/Clear';
 import { useDispatch } from 'react-redux';
 import { resetFilter, setFilterName, setFilterStatus } from 'src/redux/filterSlice';
+
+import React, { useState } from 'react';
+import {
+    TextField,
+    FormControl,
+    RadioGroup,
+    FormControlLabel,
+    Radio,
+    Button,
+    Box,
+    IconButton,
+    Popover,
+    FormLabel
+} from '@mui/material';
+import FilterListIcon from '@mui/icons-material/FilterList';
 import { TypeChar } from 'src/Type/type';
 
-function FilterMenu() {
-    const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-    const [name, setName] = useState<string | null>(null);
-    const [statusChar, setStatusChar] = useState<TypeChar | null>(null);
+
+function FilterComponent() {
+    const [name, setName] = useState<string>('');
+    const [status, setStatus] = useState<string>('');
+    const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
     const dispatch = useDispatch();
 
-    const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+    const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
         setAnchorEl(event.currentTarget);
     };
 
@@ -32,94 +32,84 @@ function FilterMenu() {
         setAnchorEl(null);
     };
 
-    const handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setName(event.target.value);
-    };
-
-    const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setStatusChar(event.target.value as TypeChar | null);
-    };
-
-    const handleResetName = () => {
-        setName('');
-    };
-
-    const handleResetRadio = () => {
-        setStatusChar(null);
-    };
-
-    const handleResetAll = () => {
-        handleResetName();
-        handleResetRadio();
-        dispatch(resetFilter(null));
-    };
+    const open = Boolean(anchorEl);
+    const id = open ? 'simple-popover' : undefined;
 
     const handleApply = () => {
         dispatch(setFilterName(name));
-        dispatch(setFilterStatus(statusChar));
+        dispatch(setFilterStatus(status as TypeChar));
         handleClose();
+    };
+
+    const handleReset = () => {
+        setName('');
+        setStatus('');
+        dispatch(resetFilter(null));
     };
 
     return (
         <div>
-            <IconButton color="primary" onClick={ handleClick }>
+            <IconButton aria-describedby={ id } onClick={ handleClick }>
                 <FilterListIcon/>
             </IconButton>
-            <Menu
+            <Popover
+                id={ id }
+                open={ open }
                 anchorEl={ anchorEl }
-                open={ Boolean(anchorEl) }
                 onClose={ handleClose }
                 anchorOrigin={ {
                     vertical: 'bottom',
-                    horizontal: 'left'
+                    horizontal: 'right'
                 } }
                 transformOrigin={ {
                     vertical: 'top',
-                    horizontal: 'left'
+                    horizontal: 'right'
                 } }
             >
-                <MenuItem>
-                    <FormControl fullWidth>
-                        <TextField
-                            label="Search by Name"
-                            value={ name }
-                            onChange={ handleNameChange }
-                            InputProps={ {
-                                endAdornment: (
-                                    <Button onClick={ handleResetName } variant="outlined" size="small">
-                                        <ClearIcon/>
-                                    </Button>
-                                )
-                            } }
-                        />
-                    </FormControl>
-                </MenuItem>
-                <MenuItem>
+                <Box
+                    sx={ {
+                        padding: 2,
+                        backgroundColor: 'white',
+                        borderRadius: 1,
+                        boxShadow: 3,
+                        width: 300
+                    } }
+                >
+                    <TextField
+                        label="Search by Name"
+                        variant="outlined"
+                        fullWidth
+                        value={ name }
+                        onChange={ (e) => setName(e.target.value) }
+                        sx={ { marginBottom: 2 } }
+                    />
                     <FormControl component="fieldset">
-                        <FormLabel component="legend">Search by Status</FormLabel>
-                        <RadioGroup value={ statusChar } onChange={ handleRadioChange }>
+                        <FormLabel>
+                            Search by Status
+                        </FormLabel>
+                        <RadioGroup
+                            aria-label="status"
+                            name="status"
+                            value={ status }
+                            onChange={ (e) => setStatus(e.target.value) }
+                        >
                             <FormControlLabel value="Alive" control={ <Radio/> } label="Alive"/>
                             <FormControlLabel value="Dead" control={ <Radio/> } label="Dead"/>
-                            <FormControlLabel value="unknown" control={ <Radio/> } label="Unknown"/>
+                            <FormControlLabel value="Unknown" control={ <Radio/> } label="Unknown"/>
                         </RadioGroup>
-                        <Button onClick={ handleResetRadio } variant="outlined">
-                            <ClearIcon/>
-                        </Button>
                     </FormControl>
-                </MenuItem>
-                <MenuItem>
-                    <Box display="flex" justifyContent="space-between" width="100%">
-                        <Button onClick={ handleResetAll } variant="outlined" size="small">
-                            Reset All
+                    <Box sx={ { display: 'flex', justifyContent: 'space-between', marginTop: 2 } }>
+                        <Button variant="outlined" color="secondary" onClick={ handleReset }>
+                            RESET ALL
                         </Button>
-                        <Button onClick={ handleApply } variant="contained" color="primary" size="small">
-                            Apply
+                        <Button variant="contained" color="primary" onClick={ handleApply }>
+                            APPLY
                         </Button>
                     </Box>
-                </MenuItem>
-            </Menu>
+                </Box>
+            </Popover>
         </div>
     );
 }
 
-export default FilterMenu;
+export default FilterComponent;

@@ -19,7 +19,7 @@ const Controls: React.FC<ControlsProps> = ({ character }) => {
     const navigate = useNavigate();
 
     const handleOpenDetails = () => {
-        navigate(`/detail/${ character.id }`);
+        navigate(`/detailed/${ character.id }`);
     };
     const handleOpen = () => {
         setIsOpen(true);

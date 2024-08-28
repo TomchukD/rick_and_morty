@@ -10,3 +10,11 @@
     border: 2px solid #000;
     padding: 25px;
 }
+.modalWrapper{
+    position: relative;
+}
+.close{
+    position: absolute;
+    top: 0;
+    right: -15px;
+}

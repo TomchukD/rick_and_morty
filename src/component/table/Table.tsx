@@ -9,6 +9,8 @@ import { selectName, selectStatus } from 'src/redux/filterSlice';
 import { TypeChar } from 'src/Type/type';
 
 
+const headerRows: string[]=['Name','Species','Type', "Status"]
+
 function RM_table() {
     const charterList: Character[] = useSelector(selectCharters);
     const filterName: string | null = useSelector(selectName);
@@ -42,18 +44,18 @@ function RM_table() {
     }, [filteredCharters.length, dispatch]);
 
     return (
-        <TableContainer component={ Paper }>
-            <Table sx={ {
-                width: { xs: '100%', md: '80%' },
+        <TableContainer sx={{ maxHeight: '85vh', maxWidth: '90vw',margin: 'auto' }} component={ Paper }>
+            <Table stickyHeader sx={ {
+                width: { xs: '100%' },
                 margin: 'auto',
-                mt: 4
             } }>
                 <TableHead>
                     <TableRow>
-                        <TableCell align="left">Name</TableCell>
-                        <TableCell>Species</TableCell>
-                        <TableCell>Type</TableCell>
-                        <TableCell>Status</TableCell>
+                        {
+                            headerRows.map((item, index) =>
+                                (<TableCell style={{fontWeight: 700}} key={index} align="left">{item}</TableCell>)
+                            )
+                        }
                         <TableCell></TableCell>
                     </TableRow>
                 </TableHead>
