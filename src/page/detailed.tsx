@@ -77,12 +77,17 @@ function Detailed() {
                                 <strong>Original Location:</strong> { character.original?.name }
                             </Typography>
                             <Box sx={ { width: 'fit-content' } }>
-                                <Typography variant="body1" gutterBottom>
-                                    <strong>Episodes:</strong> <IconButton onClick={ handleToggleEpisodes }>
-                                    { openEpisodes ? '-' : '+' }
-                                </IconButton>
-                                </Typography>
 
+                                <Typography variant="body1" gutterBottom>
+                                    <strong>Episodes:</strong>
+                                    <IconButton
+                                        disabled={ !!character.episode.length }
+                                        onClick={ handleToggleEpisodes }>
+                                        {
+                                            character.episode.length ? openEpisodes ? '-' : '+' : '-'
+                                        }
+                                    </IconButton>
+                                </Typography>
                                 <Collapse in={ openEpisodes }>
                                     <List dense={ true } disablePadding>
                                         { character.episode.map((episodeUrl) => (
