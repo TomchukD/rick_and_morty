@@ -5,7 +5,6 @@ import {
     Avatar,
     useMediaQuery,
     Box,
-    Divider,
     List,
     ListItem,
     ListItemText,
@@ -43,8 +42,8 @@ function Detailed() {
 
     return (
         <Paper sx={ { padding: 2, maxWidth: 800, margin: 'auto', marginTop: 4 } }>
-            <Grid container spacing={ 2 }>
-                <Grid item xs={ 4 }>
+            <Grid container spacing={ { xs: 12, md: 12 } }>
+                <Grid item md={ 4 } xs={ 12 }>
                     <Grid container justifyContent="center" alignItems="center">
                         <Avatar
                             alt={ character.name }
@@ -56,7 +55,7 @@ function Detailed() {
                         { character.name }
                     </Typography>
                 </Grid>
-                <Grid item xs={ 8 }>
+                <Grid item md={ 8 } xs={ 12 }>
                     <Box sx={ { display: 'flex', flexWrap: 'wrap' } }>
                         <Box sx={ { flexGrow: 1 } }>
                             <Typography variant="body1" gutterBottom>
@@ -107,7 +106,6 @@ function Detailed() {
                     </Typography>
                 </Grid>
             </Grid>
-            <Divider variant="middle"/>
         </Paper>
     );
 }
