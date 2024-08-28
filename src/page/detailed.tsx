@@ -44,7 +44,7 @@ function Detailed() {
     return (
         <Paper sx={ { padding: 2, maxWidth: 800, margin: 'auto', marginTop: 4 } }>
             <Grid container spacing={ 2 }>
-                <Grid item xs={ 12 }>
+                <Grid item xs={ 4 }>
                     <Grid container justifyContent="center" alignItems="center">
                         <Avatar
                             alt={ character.name }
@@ -56,7 +56,7 @@ function Detailed() {
                         { character.name }
                     </Typography>
                 </Grid>
-                <Grid item xs={ 12 }>
+                <Grid item xs={ 8 }>
                     <Box sx={ { display: 'flex', flexWrap: 'wrap' } }>
                         <Box sx={ { flexGrow: 1 } }>
                             <Typography variant="body1" gutterBottom>
@@ -77,25 +77,27 @@ function Detailed() {
                             <Typography variant="body1" gutterBottom>
                                 <strong>Original Location:</strong> { character.original?.name }
                             </Typography>
+                            <Box sx={ { width: 'fit-content' } }>
+                                <Typography variant="body1" gutterBottom>
+                                    <strong>Episodes:</strong> <IconButton onClick={ handleToggleEpisodes }>
+                                    { openEpisodes ? '-' : '+' }
+                                </IconButton>
+                                </Typography>
+
+                                <Collapse in={ openEpisodes }>
+                                    <List dense={ true } disablePadding>
+                                        { character.episode.map((episodeUrl) => (
+                                            <ListItem key={ episodeUrl }>
+                                                <ListItemText
+                                                    primary={ <Typography
+                                                        variant="body2">{ episodeUrl }</Typography> }/>
+                                            </ListItem>
+                                        )) }
+                                    </List>
+                                </Collapse>
+                            </Box>
                         </Box>
-                        <Box sx={ { width: 'fit-content' } }>
-                            <Typography variant="body1" gutterBottom>
-                                <strong>Episodes:</strong>
-                            </Typography>
-                            <IconButton onClick={ handleToggleEpisodes }>
-                                { openEpisodes ? '-' : '+' }
-                            </IconButton>
-                            <Collapse in={ openEpisodes }>
-                                <List dense={ true } disablePadding>
-                                    { character.episode.map((episodeUrl) => (
-                                        <ListItem key={ episodeUrl }>
-                                            <ListItemText
-                                                primary={ <Typography variant="body2">{ episodeUrl }</Typography> }/>
-                                        </ListItem>
-                                    )) }
-                                </List>
-                            </Collapse>
-                        </Box>
+
                     </Box>
                     <Typography variant="body1" gutterBottom>
                         <strong>Character URL:</strong>{ ' ' }
