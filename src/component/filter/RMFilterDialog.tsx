@@ -17,8 +17,7 @@ import {
 import FilterListIcon from '@mui/icons-material/FilterList';
 import { TypeChar } from 'src/Type/type';
 
-
-function RMFilterComponent() {
+const RMFilterComponent = () => {
     const [name, setName] = useState<string>('');
     const [status, setStatus] = useState<string>('');
     const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
@@ -110,6 +109,6 @@ function RMFilterComponent() {
             </Popover>
         </div>
     );
-}
+};
 
 export default RMFilterComponent;

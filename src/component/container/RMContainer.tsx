@@ -3,7 +3,7 @@ import RMButtonAddNew from 'src/button/RMAddNew';
 import FilterMenu from 'src/component/filter/RMFilterDialog';
 import RMTable from 'src/component/table/RMTable';
 
-function RMContainer() {
+const RMContainer = () => {
     return (
         <>
             <Stack direction="row" sx={ { display: 'flex', justifyContent: 'space-between', p: 2 } }>
@@ -18,6 +18,6 @@ function RMContainer() {
         </>
 
     );
-}
+};
 
 export default RMContainer;

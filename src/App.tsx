@@ -2,7 +2,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import RMMain from 'src/page/RMMain';
 import RMDetailed from 'src/page/RMDetailed';
 
-function App() {
+const App = () => {
     return (
         <BrowserRouter>
             <Routes>
@@ -11,6 +11,6 @@ function App() {
             </Routes>
         </BrowserRouter>
     );
-}
+};
 
 export default App;

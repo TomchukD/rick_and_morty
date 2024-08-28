@@ -18,7 +18,7 @@ import { useEffect, useState } from 'react';
 import { fetchCharacterById } from 'src/redux/detailedSlice';
 import { BASE_API } from 'src/API/API';
 
-function RMDetailed() {
+const RMDetailed = () => {
     const { characterId } = useParams<{ characterId: string }>();
     const isMobile = useMediaQuery('(max-width:600px)');
     const dispatch = useDispatch<any>();
@@ -113,6 +113,6 @@ function RMDetailed() {
             </Grid>
         </Paper>
     );
-}
+};
 
 export default RMDetailed;

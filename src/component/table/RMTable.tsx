@@ -10,7 +10,7 @@ import RMControls from 'src/component/table/cell/RMControlls';
 
 const headerRows: string[] = ['Name', 'Species', 'Type', 'Status'];
 
-function RMTable() {
+const RMTable = () => {
     const charterList: Character[] = useSelector(selectCharters);
     const filterName: string | null = useSelector(selectName);
     const filterStatus: TypeChar | null = useSelector(selectStatus);
@@ -87,6 +87,6 @@ function RMTable() {
             </Table>
         </TableContainer>
     );
-}
+};
 
 export default RMTable;

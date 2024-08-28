@@ -4,7 +4,7 @@ import { useState } from 'react';
 import AddIcon from '@mui/icons-material/Add';
 
 
-function RMAddNew() {
+const RMAddNew = () => {
     const [isOpenChar, setIsOpenChar] = useState(false);
 
     const handleOpen = () => {
@@ -27,6 +27,6 @@ function RMAddNew() {
             }
         </Stack>
     );
-}
+};
 
 export default RMAddNew;
