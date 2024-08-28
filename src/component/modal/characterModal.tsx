@@ -7,7 +7,6 @@ import { defaultCharacter } from './default';
 import { useDispatch } from 'react-redux';
 import { addCharacter } from 'src/redux/charactersSlice';
 import { Button, Grid, MenuItem, TextField } from '@mui/material';
-import styles from '../modal/modal.module.css';
 import { Character } from 'src/interface/interface';
 
 interface ScrollableModalProps {
@@ -20,6 +19,7 @@ const CharacterModal: React.FC<ScrollableModalProps> = ({ open, handleClose, cha
     const [character, setCharacter] = useState(characterData || defaultCharacter);
     const isEdit = !!characterData;
     const dispatch = useDispatch();
+
     const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = event.target;
         setCharacter({ ...character, [name]: value });
@@ -32,6 +32,7 @@ const CharacterModal: React.FC<ScrollableModalProps> = ({ open, handleClose, cha
         setCharacter(defaultCharacter);
         handleClose();
     };
+
     return (
         <Modal
             open={ open }
@@ -40,14 +41,28 @@ const CharacterModal: React.FC<ScrollableModalProps> = ({ open, handleClose, cha
             aria-labelledby="modal-modal-title"
             aria-describedby="modal-modal-description"
         >
-            <Box className={ styles.modal }>
+            <Box
+                sx={ {
+                    position: 'absolute',
+                    top: '50%',
+                    left: '50%',
+                    transform: 'translate(-50%, -50%)',
+                    width: { xs: 'calc(100% - 20px)', sm: '80%', md: '60%', lg: '50%', xl: '40%' },
+                    maxWidth: '700px',
+                    maxHeight: '80vh',
+                    bgcolor: 'background.paper',
+                    border: '2px solid #000',
+                    boxShadow: 24,
+                    p: 4,
+                    overflowY: 'auto'
+                } }
+            >
                 <Typography id="modal-modal-title" variant="h6" component="h2">
-                    {
-                        isEdit ? 'Edit Character' : 'Add new Character'
-                    }
+                    { isEdit ? 'Edit Character' : 'Add new Character' }
                 </Typography>
                 <form onSubmit={ handleSubmit }>
                     <Grid container spacing={ 2 }>
+
                         <Grid item xs={ 12 }>
                             <TextField
                                 label="Name"
@@ -177,18 +192,14 @@ const CharacterModal: React.FC<ScrollableModalProps> = ({ open, handleClose, cha
                             justifyContent: 'flex-end',
                             gap: 1
                         } }>
-
-
                             <Button type="submit" variant="contained" color="primary">
                                 {
                                     isEdit ? 'Update' : 'Save'
                                 }
-
                             </Button>
                             <Button type="button" onClick={ handleClose } variant="contained" color="inherit">
                                 Close
                             </Button>
-
                         </Grid>
                     </Grid>
                 </form>
