@@ -13,7 +13,7 @@ interface ModalProps {
     onDelete: () => void;
 }
 
-const DeleteCharModal: React.FC<ModalProps> = ({ open, onClose, onDelete }) => {
+const RMDeleteCharModal: React.FC<ModalProps> = ({ open, onClose, onDelete }) => {
     return (
         <Dialog
             open={ open }
@@ -40,4 +40,4 @@ const DeleteCharModal: React.FC<ModalProps> = ({ open, onClose, onDelete }) => {
     );
 };
 
-export default DeleteCharModal;
+export default RMDeleteCharModal;

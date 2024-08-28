@@ -7,14 +7,14 @@ import { Character } from 'src/interface/interface';
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { deleteCharacter } from 'src/redux/charactersSlice';
-import CharacterModal from 'src/component/modal/characterModal';
-import DeleteCharModal from 'src/component/modal/deleteCharModal';
+import RMCharacterModal from 'src/component/modal/RMCharacterModal';
+import RMDeleteCharModal from 'src/component/modal/RMDeleteCharModal';
 
 interface ControlsProps {
     character: Character;
 }
 
-const Controls: React.FC<ControlsProps> = ({ character }) => {
+const RMControls: React.FC<ControlsProps> = ({ character }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [isDelete, setIsDelete] = useState(false);
     const dispatch = useDispatch();
@@ -51,11 +51,11 @@ const Controls: React.FC<ControlsProps> = ({ character }) => {
             </ButtonGroup>
             {
                 isOpen && (
-                    <CharacterModal open={ isOpen } handleClose={ handleClose } characterData={ character }/>
+                    <RMCharacterModal open={ isOpen } handleClose={ handleClose } characterData={ character }/>
                 )
             }{
             isDelete && (
-                <DeleteCharModal open={ isDelete } onClose={ handleDeleteClose } onDelete={ handleDeleteChar }/>
+                <RMDeleteCharModal open={ isDelete } onClose={ handleDeleteClose } onDelete={ handleDeleteChar }/>
             )
         }
 
@@ -63,4 +63,4 @@ const Controls: React.FC<ControlsProps> = ({ character }) => {
     );
 };
 
-export default Controls;
+export default RMControls;

@@ -1,5 +1,5 @@
 import { Button, Stack } from '@mui/material';
-import CharacterModal from 'src/component/modal/characterModal';
+import RMCharacterModal from 'src/component/modal/RMCharacterModal';
 import { useState } from 'react';
 import AddIcon from '@mui/icons-material/Add';
 
@@ -22,7 +22,7 @@ function RMAddNew() {
             </Button>
             {
                 isOpenChar && (
-                    <CharacterModal open={ isOpenChar } handleClose={ handleClose }/>
+                    <RMCharacterModal open={ isOpenChar } handleClose={ handleClose }/>
                 )
             }
         </Stack>

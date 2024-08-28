@@ -15,7 +15,7 @@ interface ModalProps {
     characterData?: Character;
 }
 
-const CharacterModal: React.FC<ModalProps> = ({ open, handleClose, characterData }) => {
+const RMCharacterModal: React.FC<ModalProps> = ({ open, handleClose, characterData }) => {
     const [character, setCharacter] = useState(characterData || defaultCharacter);
     const isEdit = !!characterData;
     const dispatch = useDispatch();
@@ -209,4 +209,4 @@ const CharacterModal: React.FC<ModalProps> = ({ open, handleClose, characterData
     );
 };
 
-export default CharacterModal;
+export default RMCharacterModal;

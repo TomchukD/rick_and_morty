@@ -1,5 +1,4 @@
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
-import Controls from './cell/controlls';
 import { fetchCharacter, selectCharters } from 'src/redux/charactersSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { Character } from 'src/interface/interface';
@@ -7,10 +6,11 @@ import React, { useEffect } from 'react';
 import { BASE_API } from 'src/API/API';
 import { selectName, selectStatus } from 'src/redux/filterSlice';
 import { TypeChar } from 'src/Type/type';
+import RMControls from 'src/component/table/cell/RMControlls';
 
 const headerRows: string[] = ['Name', 'Species', 'Type', 'Status'];
 
-function RM_table() {
+function RMTable() {
     const charterList: Character[] = useSelector(selectCharters);
     const filterName: string | null = useSelector(selectName);
     const filterStatus: TypeChar | null = useSelector(selectStatus);
@@ -80,7 +80,7 @@ function RM_table() {
                             <TableCell align="left">{ row.species }</TableCell>
                             <TableCell align="left">{ row.type ? row.type : '-' }</TableCell>
                             <TableCell align="left">{ row.status }</TableCell>
-                            <TableCell align="right"><Controls character={ row }/></TableCell>
+                            <TableCell align="right"><RMControls character={ row }/></TableCell>
                         </TableRow>
                     )) }
                 </TableBody>
@@ -89,4 +89,4 @@ function RM_table() {
     );
 }
 
-export default RM_table;
+export default RMTable;
