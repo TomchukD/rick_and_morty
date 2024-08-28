@@ -9,13 +9,13 @@ import { addCharacter } from 'src/redux/charactersSlice';
 import { Button, Grid, MenuItem, TextField } from '@mui/material';
 import { Character } from 'src/interface/interface';
 
-interface ScrollableModalProps {
+interface ModalProps {
     open: boolean;
     handleClose: () => void;
     characterData?: Character;
 }
 
-const CharacterModal: React.FC<ScrollableModalProps> = ({ open, handleClose, characterData }) => {
+const CharacterModal: React.FC<ModalProps> = ({ open, handleClose, characterData }) => {
     const [character, setCharacter] = useState(characterData || defaultCharacter);
     const isEdit = !!characterData;
     const dispatch = useDispatch();
