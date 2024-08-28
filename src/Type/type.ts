@@ -1,0 +1,1 @@
+export type TypeChar = 'Alive' | 'Dead' | 'unknown';

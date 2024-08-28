@@ -1,7 +1,9 @@
+import { TypeChar } from 'src/Type/type';
+
 export interface Character {
     id: number | null;
     name: string;
-    status: 'Alive' | 'Dead' | 'unknown';
+    status: TypeChar;
     species: string;
     type: string;
     gender: 'Female' | 'Male' | 'Genderless' | 'unknown';
