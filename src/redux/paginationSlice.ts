@@ -1,5 +1,4 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { RootState } from 'src/redux/store';
 
 interface InitialState {
     page: number,
@@ -25,7 +24,4 @@ const paginationSlice = createSlice({
 });
 
 export const { setPage, setRowPerPage } = paginationSlice.actions;
-export const selectPage = (state: RootState) => state.pagination.page;
-export const selectRowPerPage = (state: RootState) => state.pagination.rowsPerPage;
-
 export default paginationSlice.reducer;
