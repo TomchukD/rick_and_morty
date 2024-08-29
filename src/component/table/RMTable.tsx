@@ -78,7 +78,7 @@ const RMTable = () => {
             } }
             component={ Paper }
         >
-            <Table stickyHeader sx={ { minWidth: 650, minHeight: '100%' } }>
+            <Table stickyHeader sx={ { minWidth: 650 } }>
                 <TableHead>
                     <TableRow>
                         { headerRows.map((item, index) => (
