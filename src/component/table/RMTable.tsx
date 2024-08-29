@@ -2,7 +2,7 @@ import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow
 import { fetchCharacter, selectCharters } from 'src/redux/charactersSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { Character } from 'src/interface/interface';
-import React, { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 import { BASE_API } from 'src/API/API';
 import { selectName, selectStatus } from 'src/redux/filterSlice';
 import { TypeChar } from 'src/Type/type';
@@ -10,12 +10,12 @@ import RMControls from 'src/component/table/cell/RMControlls';
 
 const headerRows: string[] = ['Name', 'Species', 'Type', 'Status'];
 
-const RMTable = () => {
+const RMTabxle = () => {
     const charterList: Character[] = useSelector(selectCharters);
     const filterName: string | null = useSelector(selectName);
     const filterStatus: TypeChar | null = useSelector(selectStatus);
 
-    const filteredCharters = React.useMemo(() => {
+    const filteredCharters = useMemo(() => {
         if (!charterList || (!filterName && !filterStatus)) {
             return charterList;
         }
