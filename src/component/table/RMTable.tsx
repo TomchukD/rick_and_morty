@@ -26,12 +26,14 @@ const RMTable = () => {
     const filterName: string | null = useSelector(selectName);
     const filterStatus: TypeChar | null = useSelector(selectStatus);
     const { page, rowsPerPage } = useSelector((state: RootState) => state.pagination);
+
     const handlePageChange = (event: unknown, newPage: number) => {
         dispatch(setPage(newPage));
     };
 
     const handleRowsPerPageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         dispatch(setRowPerPage(parseInt(event.target.value, 10)));
+        dispatch(setPage(0));
     };
 
     const filteredCharters = useMemo(() => {
@@ -66,7 +68,7 @@ const RMTable = () => {
 
     return (
         <TableContainer
-            sx={ {
+            sx={{
                 maxHeight: '90vh',
                 height: '100vh',
                 maxWidth: '100vw',
@@ -75,47 +77,49 @@ const RMTable = () => {
                 display: 'flex',
                 flexDirection: 'column',
                 justifyContent: 'space-between'
-            } }
-            component={ Paper }
+            }}
+            component={Paper}
         >
-            <Table stickyHeader sx={ { minWidth: 650 } }>
+            <Table stickyHeader sx={{ minWidth: 650 }}>
                 <TableHead>
                     <TableRow>
-                        { headerRows.map((item, index) => (
+                        {headerRows.map((item, index) => (
                             <TableCell
-                                style={ { fontWeight: 700 } }
-                                key={ index }
+                                style={{ fontWeight: 700 }}
+                                key={index}
                                 align="left"
                             >
-                                { item }
+                                {item}
                             </TableCell>
-                        )) }
+                        ))}
                         <TableCell></TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    { filteredCharters.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row, index) => (
-                        <TableRow key={ index }>
-                            <TableCell sx={ { minWidth: '200px' } } align="left">{ row.name }</TableCell>
-                            <TableCell sx={ { minWidth: '100px' } } align="left">{ row.species }</TableCell>
-                            <TableCell sx={ { minWidth: '250px' } }
-                                       align="left">{ row.type ? row.type : '-' }</TableCell>
-                            <TableCell sx={ { minWidth: '100px' } } align="left">{ row.status }</TableCell>
-                            <TableCell align="right"><RMControls character={ row }/></TableCell>
+                    {filteredCharters.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row, index) => (
+                        <TableRow key={index}>
+                            <TableCell sx={{ minWidth: '200px' }} align="left">{row.name}</TableCell>
+                            <TableCell sx={{ minWidth: '100px' }} align="left">{row.species}</TableCell>
+                            <TableCell sx={{ minWidth: '250px' }}
+                                align="left">{row.type ? row.type : '-'}</TableCell>
+                            <TableCell sx={{ minWidth: '100px' }} align="left">{row.status}</TableCell>
+                            <TableCell align="right"><RMControls character={row} /></TableCell>
                         </TableRow>
-                    )) }
+                    ))}
                 </TableBody>
                 <TableFooter>
-                    <TablePagination
-                        rowsPerPageOptions={ [5, 10] }
-                        count={ filteredCharters.length }
-                        page={ page }
-                        onPageChange={ handlePageChange }
-                        rowsPerPage={ rowsPerPage }
-                        onRowsPerPageChange={ handleRowsPerPageChange }
-                    />
-                </TableFooter>
+                    <TableRow>
 
+                        <TablePagination
+                            rowsPerPageOptions={[5, 10]}
+                            count={filteredCharters.length}
+                            page={page}
+                            onPageChange={handlePageChange}
+                            rowsPerPage={rowsPerPage}
+                            onRowsPerPageChange={handleRowsPerPageChange}
+                        />
+                    </TableRow>
+                </TableFooter>
             </Table>
         </TableContainer>
     );
